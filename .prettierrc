@@ -1,0 +1,23 @@
+{
+  "overrides": [
+    {
+      "files": [".eslintrc.{js,cjs}"],
+      "options": {
+        "parserOptions": {
+          "sourceType": "script"
+        }
+      }
+    }
+  ],
+  "semi": true,
+  "trailingComma": "all",
+  "arrowParens": "always",
+  "jsxSingleQuote": true,
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "singleQuote": true,
+  "bracketSameLine": false,
+  "spaceBeforeFunctionParen": true,
+  "endOfLine": "lf"
+}
