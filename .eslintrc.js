@@ -23,6 +23,8 @@ module.exports = {
   },
   plugins: ['react', 'prettier'],
   rules: {
-    'linebreak-style': ['error', 'unix'],
+    'linebreak-style': 0,
+    'import/extensions': 0,
+    'class-methods-use-this': 0,
   },
 };
