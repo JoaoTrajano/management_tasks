@@ -10,8 +10,13 @@ class Task {
     }
   }
 
-  static show(req, res) {
-    return res.status(200).send({ message: 'teste' });
+  static async show(req, res) {
+    try {
+      const task = await Tasks.findById(req.params.id).exec();
+      return res.status(200).json(task);
+    } catch (error) {
+      return res.status(500).json(error);
+    }
   }
 
   static async store(req, res) {
@@ -26,12 +31,33 @@ class Task {
     }
   }
 
-  static update(req, res) {
-    return res.status(200).send({ message: 'teste' });
+  static async update(req, res) {
+    try {
+      const task = await Tasks.findById(req.params.id).exec();
+
+      if (!task) {
+        return res.status(400).send({ message: 'Task não cadastrada' });
+      }
+
+      const { name, description } = req.body;
+
+      await Tasks.findByIdAndUpdate(req.params.id, { name, description });
+
+      return res
+        .status(200)
+        .send({ message: 'Tarefa atualizada com sucesso!' });
+    } catch (error) {
+      return res.status(500).json(error);
+    }
   }
 
-  static delete(req, res) {
-    return res.status(200).send({ message: 'teste' });
+  static async delete(req, res) {
+    try {
+      await Tasks.findByIdAndDelete(req.params.id);
+      return res.status(200).send({ message: 'Task removida com sucesso!' });
+    } catch (error) {
+      return res.status(200).json(error);
+    }
   }
 }
 
